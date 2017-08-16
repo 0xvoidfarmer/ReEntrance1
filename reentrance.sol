@@ -14,7 +14,7 @@ contract Victim {
     function withdraw(){
         uint amount = owedToAttacker;
         owedToAttacker = 0;
-        if(!msg.sender.call.value(amount)()) throw;
+        if(!msg.sender.call.value(amount)()) throw; 
         //owedToAttacker = 0;
     }
    
@@ -31,7 +31,6 @@ contract Attacker{
     
     Victim v;
     uint  public count;
-    address selfAddress ;
     
     event LogFallBack(uint count, uint balance);
     
@@ -44,8 +43,8 @@ contract Attacker{
         v.withdraw();
     }
     
-    function showBalance() public  returns (uint) {
-        return  selfAddress.balance / 1000000000000000000;
+    function showBalanceInWei() public  returns (uint) {
+        return  this.balance;
     }
     
     
