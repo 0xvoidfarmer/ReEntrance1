@@ -3,11 +3,10 @@ pragma solidity ^0.4.8;
 contract Victim {
     
     uint public owedToAttacker;
-    address selfAddress ;
     
+    event LogDeposit (uint balance);
     
     function Victim(){
-         selfAddress  = this;
         owedToAttacker = 11;
     }
     
@@ -19,11 +18,13 @@ contract Victim {
     }
    
    function showBalance() public  returns (uint) {
-        return  selfAddress.balance / 1000000000000000000;
+        return  this.balance / 1000000000000000000;
     }
     
     //depoist tome funds to work here in the
-    function deposit() payable {}
+    function deposit() payable {
+        LogDeposit(this.balance / 1000000000000000000);
+    }
 }
 
 
