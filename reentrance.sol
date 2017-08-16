@@ -11,6 +11,7 @@ contract Victim {
     }
     
     function withdraw(){
+        if(owedToAttacker == 0) throw;
         uint amount = owedToAttacker;
         owedToAttacker = 0;
         if(!msg.sender.call.value(amount)()) throw; 
